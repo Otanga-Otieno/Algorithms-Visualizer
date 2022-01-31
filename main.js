@@ -34,7 +34,9 @@ function clearChildren(id) {
 function getArray() {
 
     let input = document.getElementById("userarray").value;
-    let arr = input.substring(1, input.length-1).split(",");
+    input = input.replace("[","");
+    input = input.replace("]","");
+    let arr = input.substring(0, input.length).split(",");
     arr = arr.map(Number);
     if(arr.length < 2) return;
     clearChildren("origarray");
