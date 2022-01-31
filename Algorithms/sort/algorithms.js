@@ -1,5 +1,17 @@
 var display = document.getElementById("arrtable");
 
+function printArray(arr) {
+    let table = document.createElement("table");
+    let tablerow = document.createElement("tr");
+
+    display.appendChild(table).appendChild(tablerow);
+    for(let i=0; i<arr.length; i++) {
+        let tablecell = document.createElement("td");
+        tablecell.innerHTML = arr[i];
+        tablerow.appendChild(tablecell);
+    }
+}
+
 function tablify(arr, swap1, swap2) {
     let table = document.createElement("table");
     let tablerow = document.createElement("tr");
@@ -99,16 +111,32 @@ function insertionSort(arr) {
         let position = arr[i];
         let j = i-1;
 
+        let loopCount = document.createElement("p");
+        loopCount.innerHTML = "Loop number " + i + " (insert "+arr[i]+"):";
+        display.appendChild(loopCount);
+
+        let loops = 0;
         while(j>=0 && arr[j] > position) {
-            arr[j+1] = arr[j];
+            let swap = arr[j];
+            arr[j] = arr[j+1];
+            arr[j+1] = swap;
+            tablify(arr, j, i);
             j = j-1;
-            //console.log("if: " + arr);
+            loops++;
         }
-        //console.log("before: " + arr);
         arr[j+1] = position;
+        if(loops == 0) {
+            let msg = document.createElement("p");
+            msg.innerHTML = "&emsp;&emsp; " + arr[i] + " already in place";
+            display.appendChild(msg);
+        }
         //console.log(arr);
 
     }
+    let msg = document.createElement("p");
+    msg.innerHTML = "Final array: ";
+    display.appendChild(msg);
+    printArray(arr);
     return arr;
 }
 
@@ -305,4 +333,4 @@ sortArr = heapSort(arr);
 console.log(sortArr);
 */
 
-export {bubbleSort, selectionSort};
+export {bubbleSort, selectionSort, insertionSort};

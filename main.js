@@ -1,4 +1,4 @@
-import { bubbleSort, selectionSort } from "./Algorithms/sort/algorithms.js";
+import { bubbleSort, selectionSort, insertionSort } from "./Algorithms/sort/algorithms.js";
 
 var arr = [54, 5, 92, 49, 23, 8];
 //var arr = [20, 3, 15, 4, 6];
@@ -57,7 +57,7 @@ document.getElementById("getarrbtn").addEventListener("click", getArray);
 originalArray(arr);
 
 function currentSort(arr) {
-    console.log(selectionSort(arr));
+    console.log(insertionSort(arr));
 }
 
-console.log(selectionSort(arr));
+console.log(insertionSort(arr));
