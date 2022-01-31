@@ -48,7 +48,7 @@ function getArray() {
 function printArray(arr) {
 
     clearChildren("arrtable");
-    console.log(bubbleSort(arr));
+    currentSort(arr);
 
 }
 
@@ -56,5 +56,8 @@ document.getElementById("getarrbtn").addEventListener("click", getArray);
 
 originalArray(arr);
 
+function currentSort(arr) {
+    console.log(selectionSort(arr));
+}
 
-console.log(bubbleSort(arr));
+console.log(selectionSort(arr));

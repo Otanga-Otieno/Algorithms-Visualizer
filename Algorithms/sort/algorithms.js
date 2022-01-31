@@ -85,6 +85,7 @@ function selectionSort(arr) {
         let swap = arr[min];
         arr[min] = arr[i];
         arr[i] = swap;
+        min != i ? tablify(arr, min, i) : noSwapTablify(arr, min, i);
         //console.log(arr);
 
     }
