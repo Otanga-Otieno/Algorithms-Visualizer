@@ -50,7 +50,7 @@ function bubbleSort(arr) {
         let swaps = 0;
 
         let loops = document.createElement("p");
-        loops.innerHTML = "Loop number " + rounds++;
+        loops.innerHTML = "Loop number " + rounds++ + ":";
         display.appendChild(loops);
 
         for(let i=0; i<arr.length-1; i++) {

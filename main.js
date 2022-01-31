@@ -1,9 +1,12 @@
 import { bubbleSort, selectionSort } from "./Algorithms/sort/algorithms.js";
 
-var arr = [3,1,5,2];
+var arr = [54, 5, 92, 49, 23, 8];
 
-function tablify(arr) {
-    let display = document.getElementById("arrtable");
+function originalArray(arr) {
+    let display = document.getElementById("origarray");
+    let text = document.createElement("p");
+    text.innerHTML = "Original Array: ";
+    display.appendChild(text);
     let table = document.createElement("table");
     let tablerow = document.createElement("tr");
 
@@ -15,7 +18,7 @@ function tablify(arr) {
     }
 }
 
-tablify(arr);
+originalArray(arr);
 
 
 console.log(bubbleSort(arr));
