@@ -31,7 +31,7 @@ function clearChildren(id) {
 
 }
 
-function getArray() {
+function getArray(sortFunction) {
 
     let input = document.getElementById("userarray").value;
     input = input.replace("[","");
@@ -41,23 +41,24 @@ function getArray() {
     if(arr.length < 2) return;
     clearChildren("origarray");
     originalArray(arr);
-    printArray(arr);
+    printArray(arr, sortFunction);
 
 }
 
-function printArray(arr) {
+function printArray(arr, sortFunction) {
 
     clearChildren("arrtable");
-    currentSort(arr);
+    currentSort(arr, sortFunction);
 
 }
 
-document.getElementById("getarrbtn").addEventListener("click", getArray);
+function currentSort(arr, sortFunction) {
+    sortFunction(arr);
+}
+
+//document.getElementById("getarrbtn").addEventListener("click", getArray(window.sortFunc));
 
 originalArray(arr);
 
-function currentSort(arr) {
-    console.log(insertionSort(arr));
-}
-
-console.log(insertionSort(arr));
+//console.log(insertionSort(arr));
+export {arr, getArray, bubbleSort, selectionSort, insertionSort};

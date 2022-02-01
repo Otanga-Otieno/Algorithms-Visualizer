@@ -2,7 +2,11 @@
 
 <head>
     <script src="Algorithms/sort/algorithms.js" type="module"></script>
-    <script src="main.js" type="module"></script>
+    <script type="module">
+        import {arr, bubbleSort} from "./main.js";
+        window.sortFunc = bubbleSort;
+        bubbleSort(arr);
+    </script>
     <link rel="stylesheet" href="main.css">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 </head>
@@ -11,7 +15,7 @@
 
 <div style="text-align: center;">
     <input type="text" style="width: 60%; height: 1.5rem;" id="userarray" placeholder="Enter original array (separate values with coma, full array with square brackets also allowed)">
-    <button id="getarrbtn">Run</button>
+    <button id="getarrbtn" onclick="getArray(sortFunc);">Run</button>
 </div>
 
 <div id="origarray"></div>
@@ -26,3 +30,10 @@
 </div>
 
 <div id="arrtable"></div>
+
+<script type="module">
+    import {arr, getArray, bubbleSort} from "./main.js";
+    window.getArray = getArray;
+    window.sortFunc = bubbleSort;
+    bubbleSort(arr);
+</script>
