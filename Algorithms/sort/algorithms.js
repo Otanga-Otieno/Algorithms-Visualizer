@@ -201,10 +201,18 @@ function combSort(arr) {
 function quickSort(arr, left = 0, right = arr.length-1) {
 
     if(left >= right || left < 0) return;
-
     let pivot = partition(arr, left, right);
+
+    /*let msg = document.createElement("p");
+    msg.innerHTML = "Sorting arr from " + arr[left] + " to " + arr[pivot-1];
+    display.appendChild(msg);*/
     quickSort(arr, left, pivot-1);
+
+    /*let msg2 = document.createElement("p");
+    msg2.innerHTML = "Sorting arr from " + arr[pivot+1] + " to " + arr[right];
+    display.appendChild(msg2);*/
     quickSort(arr, pivot+1, right);
+
     return arr;
 
 }
@@ -214,12 +222,17 @@ function partition(arr, left, right) {
     let pivot = arr[right];
     let i = left-1;
 
+    let msg = document.createElement("p");
+    msg.innerHTML = "Pivot = " + pivot;
+    display.appendChild(msg);
+
     for(let j=left; j<right; j++) {
         if(arr[j] <= pivot) {
             i+=1;
             let swap = arr[i];
             arr[i] = arr[j];
             arr[j] = swap;
+            tablify(arr, i, j);
         }
     }
 
@@ -227,6 +240,12 @@ function partition(arr, left, right) {
     let swap = arr[i];
     arr[i] = arr[right];
     arr[right] = swap;
+
+    let msg2 = document.createElement("p");
+    msg2.innerHTML = "&emsp;Move pivot to correct position ";
+    display.appendChild(msg2);
+    tablify(arr, i, right);
+
     return i;
 
 }
@@ -333,4 +352,4 @@ sortArr = heapSort(arr);
 console.log(sortArr);
 */
 
-export {bubbleSort, selectionSort, insertionSort};
+export {bubbleSort, selectionSort, insertionSort, quickSort, mergeSort};

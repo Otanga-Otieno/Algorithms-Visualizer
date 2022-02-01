@@ -1,4 +1,4 @@
-import { bubbleSort, selectionSort, insertionSort } from "./Algorithms/sort/algorithms.js";
+import { bubbleSort, selectionSort, insertionSort, quickSort, mergeSort } from "./Algorithms/sort/algorithms.js";
 
 var arr = [54, 5, 92, 49, 23, 8];
 //var arr = [20, 3, 15, 4, 6];
@@ -61,4 +61,4 @@ function currentSort(arr, sortFunction) {
 originalArray(arr);
 
 //console.log(insertionSort(arr));
-export {arr, getArray, bubbleSort, selectionSort, insertionSort};
+export {arr, getArray, bubbleSort, selectionSort, insertionSort, quickSort, mergeSort};
