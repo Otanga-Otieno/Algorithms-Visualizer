@@ -48,6 +48,18 @@ function noSwapTablify(arr, check1, check2) {
     }
 }
 
+function trimArray(arr, start, end) {
+
+    let arrcopy = new Array((end+1)-start);
+    let j = 0;
+    
+    for(let i=start; i<=end; i++) {
+        arrcopy[j] = arr[i];
+        j++;
+    }
+    return arrcopy;
+}
+
 
 /*********** SORT ALGORITHMS ***********/
 
@@ -256,6 +268,12 @@ function heapSort(arr) {
 
     let n = arr.length;
 
+    /*let heapifyLeft = document.createElement("p");
+    heapifyLeft.innerHTML = "Heapify left: ";
+    display.appendChild(heapifyLeft);
+    let arrl = trimArray(arr, 0, Math.floor(n/2)-1);
+    noSwapTablify(arrl);*/
+
     for(let i=Math.floor(n/2)-1; i>=0; i--) {
         heapify(arr, n, i);
     }
@@ -266,6 +284,11 @@ function heapSort(arr) {
         arr[i] = swap;
         heapify(arr, i, 0);
     }
+
+    let msg = document.createElement("p");
+    msg.innerHTML = "Final array: ";
+    display.appendChild(msg);
+    printArray(arr);
     return arr;
 }
 
@@ -285,6 +308,7 @@ function heapify(arr, n, i) {
         let swap = arr[i];
         arr[i] = arr[largest];
         arr[largest] = swap;
+        tablify(arr, i, largest);
         heapify(arr, n, largest);
         //console.log(arr);
     }
@@ -352,4 +376,4 @@ sortArr = heapSort(arr);
 console.log(sortArr);
 */
 
-export {bubbleSort, selectionSort, insertionSort, quickSort, mergeSort};
+export {bubbleSort, selectionSort, insertionSort, quickSort, heapSort, mergeSort};
