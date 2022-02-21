@@ -48,6 +48,81 @@ function noSwapTablify(arr, check1, check2) {
     }
 }
 
+function visualizeHeapify(arr) {
+
+    display.style.textAlign = "center";
+
+    let depth = 1;
+    let spacer = 16;
+    let nextBreak = Math.pow(2, depth);
+
+
+    for(let i=0; i<arr.length; i++) {
+
+        let br = document.createElement("br");
+
+        let leftArm = document.createElement("div");
+        let rightArm = document.createElement("div");
+        leftArm.innerHTML = "&nbsp;&nbsp;" + "/";
+        rightArm.innerHTML = "\\" + "&nbsp;&nbsp;";
+
+        leftArm.style.textAlign = "left";
+        rightArm.style.textAlign = "right";
+
+        let node = document.createElement("div");
+        let nodeValue = document.createElement("div");
+        node.style.display = "inline-block";
+        //node.style.width = "fit-content";
+        
+        if(i == 0) {
+            nodeValue.innerHTML = arr[i] + "";
+            node.appendChild(nodeValue);
+            node.style.textAlign = "center";
+            display.appendChild(node);
+            display.appendChild(br);
+        } else if(i%2 == 0) {
+            node.appendChild(rightArm);
+            node.style.textAlign = "right";
+            nodeValue.style.textAlign = "right";
+            nodeValue.innerHTML = arr[i] + "&nbsp;";
+            nodeValue = addSpace(nodeValue, spacer);
+            node.appendChild(nodeValue);
+            node = addSpace(node, spacer, false);
+            display.appendChild(node);
+        } else {
+            node.appendChild(leftArm);
+            node.style.textAlign = "left";
+            nodeValue.style.textAlign = "left";
+            nodeValue.innerHTML = arr[i] + "&nbsp;";
+            nodeValue = addSpace(nodeValue, spacer, true);
+            node.appendChild(nodeValue);
+            node = addSpace(node, spacer);
+            display.appendChild(node);
+        }
+
+        if(i == nextBreak) {
+            display.appendChild(br);
+            ++depth;
+            spacer /= 2;
+            nextBreak = nextBreak + Math.pow(2, depth);
+        }
+
+    }
+
+}
+
+function addSpace(node, spaces, after) {
+
+    let space = "";
+    for(let i=0; i<spaces; i++) {
+        space = space + "&nbsp;";
+    }
+
+    (after) ? node.innerHTML = node.innerHTML + space : node.innerHTML = space + node.innerHTML;
+    return node;
+
+}
+
 function trimArray(arr, start, end) {
 
     let arrcopy = new Array((end+1)-start);
@@ -273,6 +348,7 @@ function heapSort(arr) {
     display.appendChild(heapifyLeft);
     let arrl = trimArray(arr, 0, Math.floor(n/2)-1);
     noSwapTablify(arrl);*/
+    visualizeHeapify(arr);
 
     for(let i=Math.floor(n/2)-1; i>=0; i--) {
         heapify(arr, n, i);
@@ -308,9 +384,8 @@ function heapify(arr, n, i) {
         let swap = arr[i];
         arr[i] = arr[largest];
         arr[largest] = swap;
-        tablify(arr, i, largest);
+        //tablify(arr, i, largest);
         heapify(arr, n, largest);
-        //console.log(arr);
     }
 
 }
