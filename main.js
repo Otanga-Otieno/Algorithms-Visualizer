@@ -1,7 +1,9 @@
 import { bubbleSort, selectionSort, insertionSort, quickSort, heapSort, mergeSort } from "./Algorithms/sort/algorithms.js";
 
 //var arr = [54, 5, 92, 49, 23, 8];
-var arr = [0,1,2,3,4,5,6,7,8,9,10,11,12,13,14];
+//var arr = [0,1,2,3,4,5,6,7,8,9,10,11,12,13,14];
+//var arr = [87, 71, 17, 64, 28, 8, 72, 55, 2, 6, 83, 63, 60, 90, 92];
+var arr = [20, 42, 17, 1, 51, 27, 60];
 
 function originalArray(arr) {
 
