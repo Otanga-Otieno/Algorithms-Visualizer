@@ -1,3 +1,4 @@
+/*********** VISUALIZATION HELPER FUNCTIONS ***********/
 var display = document.getElementById("arrtable");
 
 function printArray(arr) {
@@ -48,7 +49,7 @@ function noSwapTablify(arr, check1, check2) {
     }
 }
 
-function visualizeHeapify(arr, swap1, swap2) {
+async function visualizeHeapify(arr, sorted, swap1 = -1, swap2 = -1) {
 
     display.style.textAlign = "center";
 
@@ -74,7 +75,7 @@ function visualizeHeapify(arr, swap1, swap2) {
         rightArm.style.textAlign = "right";
 
         var node = document.createElement("div");
-        let nodeValue = document.createElement("div");
+        var nodeValue = document.createElement("div");
         node.style.display = "inline-block";
         //node.style.width = "fit-content";
         
@@ -108,6 +109,10 @@ function visualizeHeapify(arr, swap1, swap2) {
         }
 
         (i == swap1) ? node.style.color = "red" : (i == swap2) ? node.style.color = "green": node;
+        if(i > sorted-1 && sorted != 0) {
+            node.style.fontWeight = "bold";
+            node.style.color = "black";
+        }
 
         if(i == nextBreak) {
             node.style.paddingRight = "0px";
@@ -120,6 +125,10 @@ function visualizeHeapify(arr, swap1, swap2) {
 
     }
     display.appendChild(tree);
+    
+    /*sleep(3000).then(() => {
+        removeAllChildren("arrtable");
+    });*/
 }
 
 function addSpace(node, spaces, after) {
@@ -132,6 +141,17 @@ function addSpace(node, spaces, after) {
     (after) ? node.innerHTML = node.innerHTML + space : node.innerHTML = space + node.innerHTML;
     return node;
 
+}
+
+function removeAllChildren(node) {
+    let parent = document.getElementById(node);
+    while(parent.lastChild) {
+        parent.removeChild(parent.lastChild);
+    }
+}
+
+function sleep(ms) {
+    return new Promise(resolve => setTimeout(resolve, ms));
 }
 
 function trimArray(arr, start, end) {
@@ -354,22 +374,30 @@ function heapSort(arr) {
 
     let n = arr.length;
 
-    /*let heapifyLeft = document.createElement("p");
-    heapifyLeft.innerHTML = "Heapify left: ";
-    display.appendChild(heapifyLeft);
-    let arrl = trimArray(arr, 0, Math.floor(n/2)-1);
-    noSwapTablify(arrl);*/
-    //visualizeHeapify(arr);
-
     for(let i=Math.floor(n/2)-1; i>=0; i--) {
         heapify(arr, n, i);
     }
+    let heapBuilt = document.createElement("div");
+    heapBuilt.innerHTML = "Heap built";
+    display.appendChild(heapBuilt);
 
     for(let i=n-1; i>0; i--) {
+
+        let swapRoot = document.createElement("div");
+        let rootSwapped = document.createElement("div");
+        swapRoot.innerHTML = "Swapping root...";
+        rootSwapped.innerHTML = "Root swapped";
+
+        display.appendChild(swapRoot);
+        visualizeHeapify(arr, i+1, 0, i);
         let swap = arr[0];
         arr[0] = arr[i];
         arr[i] = swap;
+        visualizeHeapify(arr, i);
+        display.appendChild(rootSwapped);
+
         heapify(arr, i, 0);
+        visualizeHeapify(arr, i);
     }
 
     let msg = document.createElement("p");
@@ -392,13 +420,16 @@ function heapify(arr, n, i) {
     }
 
     if(largest != i) {
+        visualizeHeapify(arr, n, largest, i);
+
         let swap = arr[i];
         arr[i] = arr[largest];
         arr[largest] = swap;
-        //tablify(arr, i, largest);
+        visualizeHeapify(arr, n);
         heapify(arr, n, largest);
     }
-    visualizeHeapify(arr, n, i);
+
+    visualizeHeapify(arr, n);
 
 }
 
