@@ -1,5 +1,6 @@
 /*********** VISUALIZATION HELPER FUNCTIONS ***********/
 var display = document.getElementById("arrtable");
+var comments =  document.getElementById("comments");
 
 function printArray(arr) {
     let table = document.createElement("table");
@@ -49,8 +50,9 @@ function noSwapTablify(arr, check1, check2) {
     }
 }
 
-async function visualizeHeapify(arr, sorted, swap1 = -1, swap2 = -1) {
+async function visualizeHeapify(arr, sorted, swap1 = -1, swap2 = -1, isEnd = false) {
 
+    let sleepTime = (swap1 < 0 && swap2 < 0) ? 1000 : 2500;
     display.style.textAlign = "center";
 
     let tree = document.createElement("div");
@@ -129,6 +131,9 @@ async function visualizeHeapify(arr, sorted, swap1 = -1, swap2 = -1) {
     /*sleep(3000).then(() => {
         removeAllChildren("arrtable");
     });*/
+    await sleep(sleepTime);
+    if(!isEnd) removeAllChildren("arrtable");
+    removeAllChildren("comments");
 }
 
 function addSpace(node, spaces, after) {
@@ -370,35 +375,34 @@ function partition(arr, left, right) {
 
 
 //7. Heap Sort
-function heapSort(arr) {
+async function heapSort(arr) {
 
     let n = arr.length;
 
     for(let i=Math.floor(n/2)-1; i>=0; i--) {
-        heapify(arr, n, i);
+        await heapify(arr, n, i);
     }
     let heapBuilt = document.createElement("div");
     heapBuilt.innerHTML = "Heap built";
-    display.appendChild(heapBuilt);
+    comments.appendChild(heapBuilt);
 
     for(let i=n-1; i>0; i--) {
 
         let swapRoot = document.createElement("div");
-        let rootSwapped = document.createElement("div");
-        swapRoot.innerHTML = "Swapping root...";
-        rootSwapped.innerHTML = "Root swapped";
+        swapRoot.innerHTML = "Inserting root node to position...";
 
-        display.appendChild(swapRoot);
-        visualizeHeapify(arr, i+1, 0, i);
+        comments.appendChild(swapRoot);
+        await visualizeHeapify(arr, i+1, 0, i);
         let swap = arr[0];
         arr[0] = arr[i];
         arr[i] = swap;
-        visualizeHeapify(arr, i);
-        display.appendChild(rootSwapped);
+        await visualizeHeapify(arr, i);
 
-        heapify(arr, i, 0);
-        visualizeHeapify(arr, i);
+        await heapify(arr, i, 0);
+        await visualizeHeapify(arr, i);
     }
+
+    visualizeHeapify(arr, 1, -1, -1, true);
 
     let msg = document.createElement("p");
     msg.innerHTML = "Final array: ";
@@ -407,7 +411,7 @@ function heapSort(arr) {
     return arr;
 }
 
-function heapify(arr, n, i) {
+async function heapify(arr, n, i) {
 
     let largest = i, left = 2*i+1, right = 2*i+2;
 
@@ -420,16 +424,16 @@ function heapify(arr, n, i) {
     }
 
     if(largest != i) {
-        visualizeHeapify(arr, n, largest, i);
+        await visualizeHeapify(arr, n, largest, i);
 
         let swap = arr[i];
         arr[i] = arr[largest];
         arr[largest] = swap;
-        visualizeHeapify(arr, n);
-        heapify(arr, n, largest);
+        await visualizeHeapify(arr, n);
+        await heapify(arr, n, largest);
     }
 
-    visualizeHeapify(arr, n);
+    await visualizeHeapify(arr, n);
 
 }
 
