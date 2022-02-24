@@ -133,7 +133,7 @@ async function visualizeHeapify(arr, sorted, swap1 = -1, swap2 = -1, isEnd = fal
     });*/
     await sleep(sleepTime);
     if(!isEnd) removeAllChildren("arrtable");
-    removeAllChildren("comments");
+    //removeAllChildren("comments");
 }
 
 function addSpace(node, spaces, after) {
@@ -384,11 +384,13 @@ async function heapSort(arr) {
     }
     let heapBuilt = document.createElement("div");
     heapBuilt.innerHTML = "Heap built";
+    removeAllChildren("comments");
     comments.appendChild(heapBuilt);
 
     for(let i=n-1; i>0; i--) {
 
         let swapRoot = document.createElement("div");
+        removeAllChildren("comments");
         swapRoot.innerHTML = "Inserting root node to position...";
 
         comments.appendChild(swapRoot);
@@ -397,6 +399,7 @@ async function heapSort(arr) {
         arr[0] = arr[i];
         arr[i] = swap;
         await visualizeHeapify(arr, i);
+        removeAllChildren("comments");
 
         await heapify(arr, i, 0);
         await visualizeHeapify(arr, i);
@@ -412,6 +415,11 @@ async function heapSort(arr) {
 }
 
 async function heapify(arr, n, i) {
+
+    let buildingHeap = document.createElement("div");
+    buildingHeap.innerHTML = "Building heap...";
+    removeAllChildren("comments");
+    comments.appendChild(buildingHeap);
 
     let largest = i, left = 2*i+1, right = 2*i+2;
 
