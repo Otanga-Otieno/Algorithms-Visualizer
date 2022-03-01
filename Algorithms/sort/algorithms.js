@@ -406,6 +406,7 @@ async function heapSort(arr) {
     }
 
     visualizeHeapify(arr, 1, -1, -1, true);
+    removeAllChildren("comments");
 
     let msg = document.createElement("p");
     msg.innerHTML = "Final array: ";
