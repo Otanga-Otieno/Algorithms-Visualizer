@@ -14,7 +14,8 @@ function printArray(arr) {
     }
 }
 
-function tablify(arr, swap1, swap2) {
+async function tablify(arr, swap1 = null, swap2 = null) {
+    removeAllChildren("arrtable");
     let table = document.createElement("table");
     let tablerow = document.createElement("tr");
 
@@ -31,10 +32,13 @@ function tablify(arr, swap1, swap2) {
             tablecell.classList.add("cgreen");
         }
     }
+
+    await sleep(2000);
 }
 
 
-function noSwapTablify(arr, check1, check2) {
+async function noSwapTablify(arr, check1 = null, check2 = null) {
+    removeAllChildren("arrtable");
     let table = document.createElement("table");
     let tablerow = document.createElement("tr");
 
@@ -48,6 +52,8 @@ function noSwapTablify(arr, check1, check2) {
             tablecell.classList.add("cblue");
         }
     }
+
+    await sleep(1000);
 }
 
 async function visualizeHeapify(arr, sorted, swap1 = -1, swap2 = -1, isEnd = false) {
@@ -177,31 +183,28 @@ function trimArray(arr, start, end) {
 //In-place sorting algorithms
 
 //1. Bubble Sort
-function bubbleSort(arr) {
-
-    let rounds = 0;
+async function bubbleSort(arr) {
 
     while(true) {
         let swaps = 0;
 
-        let loops = document.createElement("p");
-        loops.innerHTML = "Loop number " + rounds++ + ":";
-        display.appendChild(loops);
-
         for(let i=0; i<arr.length-1; i++) {
+            await noSwapTablify(arr, i, i+1);
             if(arr[i+1] < arr[i]) {
+                await tablify(arr, i, i+1);
                 let swap = arr[i];
                 arr[i] = arr[i+1];
                 arr[i+1] = swap;
                 ++swaps;
-                tablify(arr, i, i+1);
-                //console.log(arr);
+                await noSwapTablify(arr, i, i+1);
+                //await tablify(arr, i, i+1);
             } else {
-                noSwapTablify(arr, i, i+1);
+                //await noSwapTablify(arr, i, i+1);
             }
         }
         if(swaps == 0) break;
     }
+    tablify(arr);
     return arr;
 }
 
