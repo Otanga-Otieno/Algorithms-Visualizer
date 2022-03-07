@@ -9,6 +9,7 @@ function originalArray(arr) {
 
     let display = document.getElementById("origarray");
     let text = document.createElement("p");
+    text.style.textAlign = "center";
     text.innerHTML = "Original Array: ";
     display.appendChild(text);
 
