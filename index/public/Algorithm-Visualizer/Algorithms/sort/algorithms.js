@@ -14,7 +14,7 @@ function printArray(arr) {
     }
 }
 
-async function tablify(arr, swap1 = null, swap2 = null) {
+async function tablify(arr, swap1 = null, swap2 = null, upto = null) {
     removeAllChildren("arrtable");
     let table = document.createElement("table");
     let tablerow = document.createElement("tr");
@@ -31,13 +31,14 @@ async function tablify(arr, swap1 = null, swap2 = null) {
         if(i == swap2) {
             tablecell.classList.add("cgreen");
         }
+        if( upto != null && i <= upto) tablecell.classList.add("corange");
     }
 
     await sleep(2000);
 }
 
 
-async function noSwapTablify(arr, check1 = null, check2 = null) {
+async function noSwapTablify(arr, check1 = null, check2 = null, upto = null) {
     removeAllChildren("arrtable");
     let table = document.createElement("table");
     let tablerow = document.createElement("tr");
@@ -48,6 +49,7 @@ async function noSwapTablify(arr, check1 = null, check2 = null) {
         tablecell.innerHTML = arr[i];
         tablerow.appendChild(tablecell);
 
+        if(upto != null && i <= upto) tablecell.classList.add("corange");
         if(i == check1 || i == check2) {
             tablecell.classList.add("cblue");
         }
@@ -210,7 +212,7 @@ async function bubbleSort(arr) {
 
 
 //2. Selection Sort
-function selectionSort(arr) {
+async function selectionSort(arr) {
 
     for(let i=0; i<arr.length; i++) {
         let min = i;
@@ -220,13 +222,14 @@ function selectionSort(arr) {
                 min = j;
             }
         }
+        min != i ? await tablify(arr, -1, min, i-1) : await tablify(arr, -1, -1, i-1);
         let swap = arr[min];
         arr[min] = arr[i];
         arr[i] = swap;
-        min != i ? tablify(arr, min, i) : noSwapTablify(arr, min, i);
-        //console.log(arr);
+        tablify(arr, -1, -1, i);
 
     }
+    tablify(arr, -1, -1, arr.length);
     return arr;
 }
 
