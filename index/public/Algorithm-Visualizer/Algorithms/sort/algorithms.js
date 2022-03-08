@@ -25,13 +25,16 @@ async function tablify(arr, swap1 = null, swap2 = null, upto = null) {
         tablecell.innerHTML = arr[i];
         tablerow.appendChild(tablecell);
 
+        if( upto != null && i <= upto) tablecell.classList.add("corange");
         if(i == swap1) {
+            tablecell.classList.remove("corange");
             tablecell.classList.add("cred");
         }
         if(i == swap2) {
+            tablecell.classList.remove("corange");
             tablecell.classList.add("cgreen");
         }
-        if( upto != null && i <= upto) tablecell.classList.add("corange");
+
     }
 
     await sleep(2000);
@@ -234,22 +237,28 @@ async function selectionSort(arr) {
 }
 
 //3. Insertion Sort
-function insertionSort(arr) {
+async function insertionSort(arr) {
 
     for(let i=1; i<arr.length; i++) {
         let position = arr[i];
         let j = i-1;
 
-        let loopCount = document.createElement("p");
+        /*let loopCount = document.createElement("p");
         loopCount.innerHTML = "Loop number " + i + " (insert "+arr[i]+"):";
-        display.appendChild(loopCount);
+        display.appendChild(loopCount);*/
 
+        removeAllChildren("comments");
         let loops = 0;
+        let inserting = document.createElement("span");
+        inserting.innerHTML = "Inserting " + arr[j+1] + " into position...";
+        comments.appendChild(inserting);
+
         while(j>=0 && arr[j] > position) {
+            await tablify(arr, -1, j+1, i);
             let swap = arr[j];
             arr[j] = arr[j+1];
             arr[j+1] = swap;
-            tablify(arr, j, i);
+            await tablify(arr, -1, j, i);
             j = j-1;
             loops++;
         }
@@ -259,13 +268,10 @@ function insertionSort(arr) {
             msg.innerHTML = "&emsp;&emsp; " + arr[i] + " already in place";
             display.appendChild(msg);
         }
-        //console.log(arr);
 
     }
-    let msg = document.createElement("p");
-    msg.innerHTML = "Final array: ";
-    display.appendChild(msg);
-    printArray(arr);
+    removeAllChildren("comments");
+    tablify(arr, -1, -1, arr.length);
     return arr;
 }
 
