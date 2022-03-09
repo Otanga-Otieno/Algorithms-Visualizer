@@ -1,6 +1,7 @@
 /*********** VISUALIZATION HELPER FUNCTIONS ***********/
 var display = document.getElementById("arrtable");
 var comments =  document.getElementById("comments");
+var comments2 = document.getElementById("comments2");
 
 function printArray(arr) {
     let table = document.createElement("table");
@@ -59,6 +60,32 @@ async function noSwapTablify(arr, check1 = null, check2 = null, upto = null) {
     }
 
     await sleep(1000);
+}
+
+async function tablifyQuickSort(arr, swap1 = null, swap2 = null, upto = null) {
+    removeAllChildren("arrtable");
+    let table = document.createElement("table");
+    let tablerow = document.createElement("tr");
+
+    display.appendChild(table).appendChild(tablerow);
+    for(let i=0; i<arr.length; i++) {
+        let tablecell = document.createElement("td");
+        tablecell.innerHTML = arr[i];
+        tablerow.appendChild(tablecell);
+
+        if( upto != null && i <= upto) tablecell.classList.add("corange");
+        if(i == swap1) {
+            tablecell.classList.remove("corange");
+            tablecell.classList.add("cred");
+        }
+        if(i == swap2) {
+            tablecell.classList.remove("corange");
+            tablecell.classList.add("cgreen");
+        }
+
+    }
+
+    await sleep(2000);
 }
 
 async function visualizeHeapify(arr, sorted, swap1 = -1, swap2 = -1, isEnd = false) {
@@ -333,53 +360,65 @@ function combSort(arr) {
 
 //6. Quick Sort
 //using Lomuto partition
-function quickSort(arr, left = 0, right = arr.length-1) {
+async function quickSort(arr, left = 0, right = arr.length-1) {
 
     if(left >= right || left < 0) return;
-    let pivot = partition(arr, left, right);
+    let pivot = await partition(arr, left, right);
 
-    /*let msg = document.createElement("p");
-    msg.innerHTML = "Sorting arr from " + arr[left] + " to " + arr[pivot-1];
-    display.appendChild(msg);*/
-    quickSort(arr, left, pivot-1);
+    removeAllChildren("comments2");
+    let msg = document.createElement("span");
+    msg.innerHTML = "Sorting left arr from " + arr[left] + " to " + arr[pivot-1];
+    comments2.appendChild(msg);
+    await quickSort(arr, left, pivot-1);
 
-    /*let msg2 = document.createElement("p");
-    msg2.innerHTML = "Sorting arr from " + arr[pivot+1] + " to " + arr[right];
-    display.appendChild(msg2);*/
-    quickSort(arr, pivot+1, right);
+    removeAllChildren("comments2");
+    let msg2 = document.createElement("p");
+    msg2.innerHTML = "Sorting right from " + arr[pivot+1] + " to " + arr[right];
+    comments2.appendChild(msg2);
+    await quickSort(arr, pivot+1, right);
 
+    removeAllChildren("comments2");
+    await tablifyQuickSort(arr);
     return arr;
 
 }
 
-function partition(arr, left, right) {
+async function partition(arr, left, right) {
 
     let pivot = arr[right];
     let i = left-1;
 
-    let msg = document.createElement("p");
-    msg.innerHTML = "Pivot = " + pivot;
-    display.appendChild(msg);
+    removeAllChildren("comments");
+    let pivotText = document.createElement("span");
+    pivotText.innerHTML = "Pivot = " + pivot;
+    comments.appendChild(pivotText);
 
     for(let j=left; j<right; j++) {
         if(arr[j] <= pivot) {
+            await tablifyQuickSort(arr, i, j);
             i+=1;
             let swap = arr[i];
             arr[i] = arr[j];
             arr[j] = swap;
-            tablify(arr, i, j);
+            await tablifyQuickSort(arr, i, j);
         }
     }
+
+    removeAllChildren("comments");
+    let movePivot = document.createElement("span");
+    movePivot.innerHTML = "Moving pivot(" + pivot + ") to position...";
+    comments.appendChild(movePivot);
+    await tablifyQuickSort(arr, i, right);
 
     i+=1;
     let swap = arr[i];
     arr[i] = arr[right];
     arr[right] = swap;
 
-    let msg2 = document.createElement("p");
+    /*let msg2 = document.createElement("p");
     msg2.innerHTML = "&emsp;Move pivot to correct position ";
-    display.appendChild(msg2);
-    tablify(arr, i, right);
+    display.appendChild(msg2);*/
+    await tablifyQuickSort(arr, i, right);
 
     return i;
 
