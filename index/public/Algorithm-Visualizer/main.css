@@ -35,3 +35,20 @@ td {
 .corange {
     color: orange;
 }
+
+.bleft {
+    border-left: solid 5px black;
+    border-top: solid 5px black;
+    border-bottom: solid 5px black;
+}
+
+.bright {
+    border-right: solid 5px black;
+    border-top: solid 5px black;
+    border-bottom: solid 5px black;
+}
+
+.bbold {
+    border-top: solid 5px black;
+    border-bottom: solid 5px black;
+}

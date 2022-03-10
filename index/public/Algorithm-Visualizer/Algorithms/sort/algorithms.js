@@ -62,7 +62,7 @@ async function noSwapTablify(arr, check1 = null, check2 = null, upto = null) {
     await sleep(1000);
 }
 
-async function tablifyQuickSort(arr, swap1 = null, swap2 = null, upto = null) {
+async function tablifyQuickSort(arr, swap1 = null, swap2 = null, left = null, right = null) {
     removeAllChildren("arrtable");
     let table = document.createElement("table");
     let tablerow = document.createElement("tr");
@@ -73,14 +73,18 @@ async function tablifyQuickSort(arr, swap1 = null, swap2 = null, upto = null) {
         tablecell.innerHTML = arr[i];
         tablerow.appendChild(tablecell);
 
-        if( upto != null && i <= upto) tablecell.classList.add("corange");
+        tablecell.classList = "";
+        if(i == left) tablecell.classList.add("bleft");
+        if(i == right) tablecell.classList.add("bright");
+        if(i > left && i < right) tablecell.classList.add("bbold");
+        if(i >= left && i <= swap1 && left != null) tablecell.classList.add("corange");
         if(i == swap1) {
-            tablecell.classList.remove("corange");
-            tablecell.classList.add("cred");
+            //tablecell.classList.remove("corange");
+            //tablecell.classList.add("cred");
         }
         if(i == swap2) {
-            tablecell.classList.remove("corange");
-            tablecell.classList.add("cgreen");
+            //tablecell.classList.remove("corange");
+            //tablecell.classList.add("cgreen");
         }
 
     }
@@ -367,17 +371,18 @@ async function quickSort(arr, left = 0, right = arr.length-1) {
 
     removeAllChildren("comments2");
     let msg = document.createElement("span");
-    msg.innerHTML = "Sorting left arr from " + arr[left] + " to " + arr[pivot-1];
-    comments2.appendChild(msg);
+    msg.innerHTML = "Sorting left arr in bold brackets. " //+ arr[left] + " to " + arr[pivot-1];
+    //comments2.appendChild(msg);
     await quickSort(arr, left, pivot-1);
 
     removeAllChildren("comments2");
     let msg2 = document.createElement("p");
-    msg2.innerHTML = "Sorting right from " + arr[pivot+1] + " to " + arr[right];
-    comments2.appendChild(msg2);
+    msg2.innerHTML = "Sorting right arr in bold brackets. " //+ arr[pivot+1] + " to " + arr[right];
+    //comments2.appendChild(msg2);
     await quickSort(arr, pivot+1, right);
 
     removeAllChildren("comments2");
+    removeAllChildren("comments");
     await tablifyQuickSort(arr);
     return arr;
 
@@ -390,17 +395,22 @@ async function partition(arr, left, right) {
 
     removeAllChildren("comments");
     let pivotText = document.createElement("span");
+    let br = document.createElement("br");
+    let sorting = document.createElement("span")
+    sorting.innerHTML = "Selecting elements less than pivot...";
     pivotText.innerHTML = "Pivot = " + pivot;
     comments.appendChild(pivotText);
+    comments.appendChild(br);
+    comments.appendChild(sorting);
 
     for(let j=left; j<right; j++) {
         if(arr[j] <= pivot) {
-            await tablifyQuickSort(arr, i, j);
+            await tablifyQuickSort(arr, i, j, left, right);
             i+=1;
             let swap = arr[i];
             arr[i] = arr[j];
             arr[j] = swap;
-            await tablifyQuickSort(arr, i, j);
+            await tablifyQuickSort(arr, i, j, left, right);
         }
     }
 
@@ -408,17 +418,14 @@ async function partition(arr, left, right) {
     let movePivot = document.createElement("span");
     movePivot.innerHTML = "Moving pivot(" + pivot + ") to position...";
     comments.appendChild(movePivot);
-    await tablifyQuickSort(arr, i, right);
+    await tablifyQuickSort(arr, i+1, right, left, right);
 
     i+=1;
     let swap = arr[i];
     arr[i] = arr[right];
     arr[right] = swap;
 
-    /*let msg2 = document.createElement("p");
-    msg2.innerHTML = "&emsp;Move pivot to correct position ";
-    display.appendChild(msg2);*/
-    await tablifyQuickSort(arr, i, right);
+    await tablifyQuickSort(arr, i, right, left, right);
 
     return i;
 
