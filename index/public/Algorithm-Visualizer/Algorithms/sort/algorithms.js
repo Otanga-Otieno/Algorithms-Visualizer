@@ -418,7 +418,7 @@ async function partition(arr, left, right) {
     let movePivot = document.createElement("span");
     movePivot.innerHTML = "Moving pivot(" + pivot + ") to position...";
     comments.appendChild(movePivot);
-    await tablifyQuickSort(arr, i+1, right, left, right);
+    await tablifyQuickSort(arr, i, right, left, right);
 
     i+=1;
     let swap = arr[i];
