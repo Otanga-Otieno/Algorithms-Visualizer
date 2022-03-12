@@ -78,14 +78,6 @@ async function tablifyQuickSort(arr, swap1 = null, swap2 = null, left = null, ri
         if(i == right) tablecell.classList.add("bright");
         if(i > left && i < right) tablecell.classList.add("bbold");
         if(i >= left && i <= swap1 && left != null) tablecell.classList.add("corange");
-        if(i == swap1) {
-            //tablecell.classList.remove("corange");
-            //tablecell.classList.add("cred");
-        }
-        if(i == swap2) {
-            //tablecell.classList.remove("corange");
-            //tablecell.classList.add("cgreen");
-        }
 
     }
 
