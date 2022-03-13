@@ -113,7 +113,6 @@ async function visualizeHeapify(arr, sorted, swap1 = -1, swap2 = -1, isEnd = fal
         var node = document.createElement("div");
         var nodeValue = document.createElement("div");
         node.style.display = "inline-block";
-        //node.style.width = "fit-content";
         
         if(i == 0) {
             nodeValue.innerHTML = arr[i] + "";
@@ -162,12 +161,8 @@ async function visualizeHeapify(arr, sorted, swap1 = -1, swap2 = -1, isEnd = fal
     }
     display.appendChild(tree);
     
-    /*sleep(3000).then(() => {
-        removeAllChildren("arrtable");
-    });*/
     await sleep(sleepTime);
     if(!isEnd) removeAllChildren("arrtable");
-    //removeAllChildren("comments");
 }
 
 function addSpace(node, spaces, after) {
