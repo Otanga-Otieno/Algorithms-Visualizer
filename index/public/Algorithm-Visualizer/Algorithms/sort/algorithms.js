@@ -258,10 +258,6 @@ async function insertionSort(arr) {
         let position = arr[i];
         let j = i-1;
 
-        /*let loopCount = document.createElement("p");
-        loopCount.innerHTML = "Loop number " + i + " (insert "+arr[i]+"):";
-        display.appendChild(loopCount);*/
-
         removeAllChildren("comments");
         let loops = 0;
         let inserting = document.createElement("span");
