@@ -1,4 +1,4 @@
-import { bubbleSort, selectionSort, insertionSort, quickSort, heapSort, mergeSort } from "./Algorithms/sort/algorithms.js";
+import { bubbleSort, selectionSort, insertionSort, quickSort, heapSort, mergeSort } from "./Algorithms/algorithms.js";
 
 //var arr = [54, 5, 92, 49, 23, 8];
 //var arr = [0,1,2,3,4,5,6,7,8,9,10,11,12,13,14];
