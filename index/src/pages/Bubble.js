@@ -4,7 +4,10 @@ import {arr, originalArray, getArray, bubbleSort} from "./main.js";
 function Bubble() {
 
     return (
-        <div onLoad={originalArray} >
+        <div onLoad={() => {
+            originalArray(arr);
+            bubbleSort(arr);
+        }} >
         <link rel="stylesheet" href="main.css" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <div style={{ textAlign: "center" }}>
@@ -17,7 +20,7 @@ function Bubble() {
             id="userarray"
             placeholder="Enter original array (separate values with coma, full array with square brackets also allowed)"
             />
-            <button id="getarrbtn" onClick={getArray} >
+            <button id="getarrbtn" onClick={() => getArray(bubbleSort)} >
             Run
             </button>
         </div>

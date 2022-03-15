@@ -3,7 +3,7 @@ var display = document.getElementById("arrtable");
 var comments =  document.getElementById("comments");
 var comments2 = document.getElementById("comments2");
 
-function printArray(arr) {
+function printArrayVisual(arr) {
     let table = document.createElement("table");
     let tablerow = document.createElement("tr");
 
@@ -454,7 +454,7 @@ async function heapSort(arr) {
     let msg = document.createElement("p");
     msg.innerHTML = "Final array: ";
     display.appendChild(msg);
-    printArray(arr);
+    printArrayVisual(arr);
     return arr;
 }
 
