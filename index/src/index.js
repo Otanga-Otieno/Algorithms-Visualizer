@@ -4,6 +4,7 @@ import './index.css';
 import App from './App';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import { useLocation } from 'react-router-dom';
+import Bubble from './pages/Bubble';
 
 
 export function Page() {
@@ -18,7 +19,7 @@ ReactDOM.render(
     <BrowserRouter>
         <Routes>
             <Route path='/' element={<App />} />
-            <Route path='bubblesort' element={<Page />} />
+            <Route path='bubblesort' element={<Bubble />} />
             <Route path='heapsort' element={<Page />} />
             <Route path='insertionsort' element={<Page />} />
             <Route path='quicksort' element={<Page />} />
