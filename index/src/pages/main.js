@@ -24,6 +24,7 @@ function printArrayVisual(arr) {
 }
 
 async function tablify(arr, swap1 = null, swap2 = null, upto = null) {
+    var display = document.getElementById("arrtable");
     removeAllChildren("arrtable");
     let table = document.createElement("table");
     let tablerow = document.createElement("tr");
@@ -51,6 +52,7 @@ async function tablify(arr, swap1 = null, swap2 = null, upto = null) {
 
 
 async function noSwapTablify(arr, check1 = null, check2 = null, upto = null) {
+    var display = document.getElementById("arrtable");
     removeAllChildren("arrtable");
     let table = document.createElement("table");
     let tablerow = document.createElement("tr");
