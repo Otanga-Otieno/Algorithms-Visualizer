@@ -45,8 +45,4 @@ function Bubble() {
 
 }
 
-//originalArray(arr);
-    
-//bubbleSort(arr);
-
 export default Bubble;
