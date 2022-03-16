@@ -1,4 +1,4 @@
-import { quickSort, heapSort, mergeSort } from "./Algorithms/algorithms.js";
+import { heapSort, mergeSort } from "./Algorithms/algorithms.js";
 
 var arr = [54, 5, 92, 49, 23, 8];
 //var arr = [0,1,2,3,4,5,6,7,8,9,10,11,12,13,14];
@@ -73,6 +73,7 @@ async function noSwapTablify(arr, check1 = null, check2 = null, upto = null) {
 }
 
 async function tablifyQuickSort(arr, swap1 = null, swap2 = null, left = null, right = null) {
+    var display = document.getElementById("arrtable");
     removeAllChildren("arrtable");
     let table = document.createElement("table");
     let tablerow = document.createElement("tr");
@@ -280,6 +281,74 @@ async function insertionSort(arr) {
     removeAllChildren("comments");
     tablify(arr, -1, -1, arr.length);
     return arr;
+}
+
+async function quickSort(arr, left = 0, right = arr.length-1) {
+
+    if(left >= right || left < 0) return;
+    let pivot = await partition(arr, left, right);
+
+    removeAllChildren("comments2");
+    let msg = document.createElement("span");
+    msg.innerHTML = "Sorting left arr in bold brackets. " //+ arr[left] + " to " + arr[pivot-1];
+    //comments2.appendChild(msg);
+    await quickSort(arr, left, pivot-1);
+
+    removeAllChildren("comments2");
+    let msg2 = document.createElement("p");
+    msg2.innerHTML = "Sorting right arr in bold brackets. " //+ arr[pivot+1] + " to " + arr[right];
+    //comments2.appendChild(msg2);
+    await quickSort(arr, pivot+1, right);
+
+    removeAllChildren("comments2");
+    removeAllChildren("comments");
+    await tablifyQuickSort(arr);
+    return arr;
+
+}
+
+async function partition(arr, left, right) {
+
+    let pivot = arr[right];
+    let i = left-1;
+
+    var comments =  document.getElementById("comments");
+    removeAllChildren("comments");
+    let pivotText = document.createElement("span");
+    let br = document.createElement("br");
+    let sorting = document.createElement("span")
+    sorting.innerHTML = "Selecting elements less than pivot...";
+    pivotText.innerHTML = "Pivot = " + pivot;
+    comments.appendChild(pivotText);
+    comments.appendChild(br);
+    comments.appendChild(sorting);
+
+    for(let j=left; j<right; j++) {
+        if(arr[j] <= pivot) {
+            await tablifyQuickSort(arr, i, j, left, right);
+            i+=1;
+            let swap = arr[i];
+            arr[i] = arr[j];
+            arr[j] = swap;
+            await tablifyQuickSort(arr, i, j, left, right);
+        }
+    }
+
+    removeAllChildren("comments");
+    let movePivot = document.createElement("span");
+    movePivot.innerHTML = "Moving pivot(" + pivot + ") to position...";
+    comments.appendChild(movePivot);
+    await tablifyQuickSort(arr, i, right, left, right);
+
+    i+=1;
+    let swap = arr[i];
+    arr[i] = arr[right];
+    arr[right] = swap;
+
+    await tablifyQuickSort(arr, i, right, left, right);
+
+    return i;
+
 }
 
 /************************************* End of algorithms**********************/
