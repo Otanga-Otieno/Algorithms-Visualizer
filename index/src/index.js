@@ -2,9 +2,10 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
 import App from './App';
+import Bubble from './pages/Bubble';
+import Selection  from './pages/Selection';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import { useLocation } from 'react-router-dom';
-import Bubble from './pages/Bubble';
 
 
 export function Page() {
@@ -23,7 +24,7 @@ ReactDOM.render(
             <Route path='heapsort' element={<Page />} />
             <Route path='insertionsort' element={<Page />} />
             <Route path='quicksort' element={<Page />} />
-            <Route path='selectionsort' element={<Page />} />
+            <Route path='selectionsort' element={<Selection />} />
         </Routes>
     </BrowserRouter>,
     rootElement

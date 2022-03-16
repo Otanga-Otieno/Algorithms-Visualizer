@@ -1,4 +1,4 @@
-import { selectionSort, insertionSort, quickSort, heapSort, mergeSort } from "./Algorithms/algorithms.js";
+import { insertionSort, quickSort, heapSort, mergeSort } from "./Algorithms/algorithms.js";
 
 var arr = [54, 5, 92, 49, 23, 8];
 //var arr = [0,1,2,3,4,5,6,7,8,9,10,11,12,13,14];
@@ -226,6 +226,29 @@ async function bubbleSort(arr) {
     tablify(arr);
     return arr;
 }
+
+async function selectionSort(arr) {
+
+    for(let i=0; i<arr.length; i++) {
+        let min = i;
+
+        for(let j=i+1; j<arr.length; j++) {
+            if(arr[j] < arr[min]) {
+                min = j;
+            }
+        }
+        min != i ? await tablify(arr, -1, min, i-1) : await tablify(arr, -1, -1, i-1);
+        let swap = arr[min];
+        arr[min] = arr[i];
+        arr[i] = swap;
+        tablify(arr, -1, -1, i);
+
+    }
+    tablify(arr, -1, -1, arr.length);
+    return arr;
+}
+
+/************************************* End of algorithms**********************/
 
 function originalArray(arr) {
 
