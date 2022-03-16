@@ -477,9 +477,4 @@ function currentSort(arr, sortFunction) {
     sortFunction(arr);
 }
 
-//document.getElementById("getarrbtn").addEventListener("click", getArray(window.sortFunc));
-
-//originalArray(arr);
-
-//console.log(insertionSort(arr));
 export {arr, originalArray, getArray, bubbleSort, selectionSort, insertionSort, quickSort, heapSort};
