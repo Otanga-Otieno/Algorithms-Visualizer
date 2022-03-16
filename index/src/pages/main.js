@@ -1,4 +1,4 @@
-import { insertionSort, quickSort, heapSort, mergeSort } from "./Algorithms/algorithms.js";
+import { quickSort, heapSort, mergeSort } from "./Algorithms/algorithms.js";
 
 var arr = [54, 5, 92, 49, 23, 8];
 //var arr = [0,1,2,3,4,5,6,7,8,9,10,11,12,13,14];
@@ -244,6 +244,40 @@ async function selectionSort(arr) {
         tablify(arr, -1, -1, i);
 
     }
+    tablify(arr, -1, -1, arr.length);
+    return arr;
+}
+
+async function insertionSort(arr) {
+
+    for(let i=1; i<arr.length; i++) {
+        let position = arr[i];
+        let j = i-1;
+
+        removeAllChildren("comments");
+        let loops = 0;
+        let inserting = document.createElement("span");
+        inserting.innerHTML = "Inserting " + arr[j+1] + " into position...";
+        comments.appendChild(inserting);
+
+        while(j>=0 && arr[j] > position) {
+            await tablify(arr, -1, j+1, i);
+            let swap = arr[j];
+            arr[j] = arr[j+1];
+            arr[j+1] = swap;
+            await tablify(arr, -1, j, i);
+            j = j-1;
+            loops++;
+        }
+        arr[j+1] = position;
+        if(loops == 0) {
+            let msg = document.createElement("p");
+            msg.innerHTML = "&emsp;&emsp; " + arr[i] + " already in place";
+            display.appendChild(msg);
+        }
+
+    }
+    removeAllChildren("comments");
     tablify(arr, -1, -1, arr.length);
     return arr;
 }
