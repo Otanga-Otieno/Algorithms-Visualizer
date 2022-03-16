@@ -1,10 +1,4 @@
-import { heapSort, mergeSort } from "./Algorithms/algorithms.js";
-
 var arr = [54, 5, 92, 49, 23, 8];
-//var arr = [0,1,2,3,4,5,6,7,8,9,10,11,12,13,14];
-//var arr = [87, 71, 17, 64, 28, 8, 72, 55, 2, 6, 83, 63, 60, 90, 92];
-//var testArr1 = [20, 42, 17, 1, 51, 27, 60];
-
 
 /*********** VISUALIZATION HELPER FUNCTIONS ***********/
 var display = document.getElementById("arrtable");
@@ -98,6 +92,8 @@ async function tablifyQuickSort(arr, swap1 = null, swap2 = null, left = null, ri
 async function visualizeHeapify(arr, sorted, swap1 = -1, swap2 = -1, isEnd = false) {
 
     let sleepTime = (swap1 < 0 && swap2 < 0) ? 1000 : 2500;
+
+    var display = document.getElementById("arrtable");
     display.style.textAlign = "center";
 
     let tree = document.createElement("div");
@@ -136,7 +132,7 @@ async function visualizeHeapify(arr, sorted, swap1 = -1, swap2 = -1, isEnd = fal
             node.style.textAlign = "right";
             nodeValue.style.textAlign = "right";
             node.style.paddingRight = spacerBetween + "px";
-            node.style.color = "#2962ff";
+            //node.style.color = "#2962ff";
             nodeValue.innerHTML = arr[i] + "&nbsp;";
             nodeValue = addSpace(nodeValue, spacer, false);
             node.appendChild(nodeValue);
@@ -146,7 +142,7 @@ async function visualizeHeapify(arr, sorted, swap1 = -1, swap2 = -1, isEnd = fal
             node.appendChild(leftArm);
             node.style.textAlign = "left";
             nodeValue.style.textAlign = "left";
-            node.style.color = "#ffc629";
+            //node.style.color = "#ffc629";
             nodeValue.innerHTML = arr[i] + "&nbsp;";
             nodeValue = addSpace(nodeValue, spacer, true);
             node.appendChild(nodeValue);
@@ -351,6 +347,80 @@ async function partition(arr, left, right) {
 
 }
 
+async function heapSort(arr) {
+
+    let n = arr.length;
+
+    for(let i=Math.floor(n/2)-1; i>=0; i--) {
+        await heapify(arr, n, i);
+    }
+
+    var comments =  document.getElementById("comments");
+    let heapBuilt = document.createElement("div");
+    heapBuilt.innerHTML = "Heap built";
+    removeAllChildren("comments");
+    comments.appendChild(heapBuilt);
+
+    for(let i=n-1; i>0; i--) {
+
+        let swapRoot = document.createElement("div");
+        removeAllChildren("comments");
+        swapRoot.innerHTML = "Inserting root node to position...";
+
+        comments.appendChild(swapRoot);
+        await visualizeHeapify(arr, i+1, 0, i);
+        let swap = arr[0];
+        arr[0] = arr[i];
+        arr[i] = swap;
+        await visualizeHeapify(arr, i);
+        removeAllChildren("comments");
+
+        await heapify(arr, i, 0);
+        await visualizeHeapify(arr, i);
+    }
+
+    visualizeHeapify(arr, 1, -1, -1, true);
+    removeAllChildren("comments");
+
+    let msg = document.createElement("p");
+    msg.innerHTML = "Final array: ";
+    display.appendChild(msg);
+    printArrayVisual(arr);
+    return arr;
+}
+
+async function heapify(arr, n, i) {
+
+    var comments =  document.getElementById("comments");
+    let buildingHeap = document.createElement("div");
+    buildingHeap.innerHTML = "Building heap...";
+    removeAllChildren("comments");
+    comments.appendChild(buildingHeap);
+
+    let largest = i, left = 2*i+1, right = 2*i+2;
+
+    if(left < n && arr[left] > arr[largest]) {
+        largest = left;
+    }
+
+    if(right < n && arr[right] > arr[largest]) {
+        largest = right;
+    }
+
+    if(largest != i) {
+        await visualizeHeapify(arr, n, largest, i);
+
+        let swap = arr[i];
+        arr[i] = arr[largest];
+        arr[largest] = swap;
+        await visualizeHeapify(arr, n);
+        await heapify(arr, n, largest);
+    }
+
+    await visualizeHeapify(arr, n);
+
+}
+
 /************************************* End of algorithms**********************/
 
 function originalArray(arr) {
@@ -412,4 +482,4 @@ function currentSort(arr, sortFunction) {
 //originalArray(arr);
 
 //console.log(insertionSort(arr));
-export {arr, originalArray, getArray, bubbleSort, selectionSort, insertionSort, quickSort, heapSort, mergeSort};
+export {arr, originalArray, getArray, bubbleSort, selectionSort, insertionSort, quickSort, heapSort};

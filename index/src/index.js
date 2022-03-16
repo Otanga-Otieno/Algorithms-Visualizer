@@ -6,6 +6,7 @@ import Bubble from './pages/Bubble';
 import Selection  from './pages/Selection';
 import Insertion from './pages/Insertion';
 import Quick from './pages/Quick';
+import Heap from './pages/Heap';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import { useLocation } from 'react-router-dom';
 
@@ -23,7 +24,7 @@ ReactDOM.render(
         <Routes>
             <Route path='/' element={<App />} />
             <Route path='bubblesort' element={<Bubble />} />
-            <Route path='heapsort' element={<Page />} />
+            <Route path='heapsort' element={<Heap />} />
             <Route path='insertionsort' element={<Insertion />} />
             <Route path='quicksort' element={<Quick />} />
             <Route path='selectionsort' element={<Selection />} />
