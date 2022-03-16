@@ -30,11 +30,9 @@ function Heap() {
             <p>
             <span>Key: &nbsp;</span>
             <br />
-            <span style={{ color: "red" }}>Red - &nbsp;</span>
-            <span>Coming soon</span>
-            <br />
-            <span style={{ color: "green" }}>Green -&nbsp;</span>
-            <span>Coming soon</span>
+            <span style={{ color: "red" }}>Red, &nbsp;</span>
+            <span style={{ color: "green" }}>Green &nbsp;</span>
+            <span>- Swapping elements</span>
             <br />
             </p>
         </div>
