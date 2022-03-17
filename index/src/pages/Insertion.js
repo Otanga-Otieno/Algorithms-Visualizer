@@ -2,11 +2,12 @@ import React from "react";
 import {arr, originalArray, getArray, insertionSort} from "./main.js";
 
 function Insertion() {
+    let array = arr.slice();
 
     return (
         <div onLoad={() => {
-            originalArray(arr);
-            insertionSort(arr);
+            originalArray(array);
+            insertionSort(array);
         }}  style={{backgroundColor: "white", padding: "2.5%", margin: "2.5%"}}>
         <link rel="stylesheet" href="main.css" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />

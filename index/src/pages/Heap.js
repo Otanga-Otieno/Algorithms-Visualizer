@@ -3,11 +3,12 @@ import {arr, originalArray, getArray, heapSort} from "./main.js";
 
 
 function Heap() {
+    let array = arr.slice();
 
     return (
         <div onLoad={() => {
-            originalArray(arr);
-            heapSort(arr);
+            originalArray(array);
+            heapSort(array);
         }}  style={{backgroundColor: "white", padding: "2.5%", margin: "2.5%"}}>
         <link rel="stylesheet" href="main.css" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />

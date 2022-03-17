@@ -2,11 +2,12 @@ import React from "react";
 import {arr, originalArray, getArray, bubbleSort} from "./main.js";
 
 function Bubble() {
+    let array = arr.slice();
 
     return (
         <div onLoad={() => {
-            originalArray(arr);
-            bubbleSort(arr);
+            originalArray(array);
+            bubbleSort(array);
         }}  style={{backgroundColor: "white", padding: "2.5%", margin: "2.5%"}}>
         <link rel="stylesheet" href="main.css" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />

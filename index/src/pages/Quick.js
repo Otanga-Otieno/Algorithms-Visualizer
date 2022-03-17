@@ -2,11 +2,12 @@ import React from "react";
 import {arr, originalArray, getArray, quickSort} from "./main.js";
 
 function Quick() {
+    let array = arr.slice();
     
     return (
         <div onLoad={() => {
-            originalArray(arr);
-            quickSort(arr);
+            originalArray(array);
+            quickSort(array);
         }}  style={{backgroundColor: "white", padding: "2.5%", margin: "2.5%"}}>
         <link rel="stylesheet" href="main.css" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
