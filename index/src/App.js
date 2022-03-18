@@ -10,11 +10,11 @@ function App() {
 
       <div>
         <ol style={{listStylePosition: "inside"}}>
-          <div className='rounded shadow p-3 my-3 bg-white' style={{display: "flex", alignItems: "center", justifyContent: "center"}} ><i className='fas fa-droplet fa-2x mx-5'></i><Link to={"bubblesort"}>Bubble Sort</Link></div>
-          <div className='rounded shadow p-3 my-3 bg-white' style={{display: "flex", alignItems: "center", justifyContent: "center"}} ><i className='fas fa-tree fa-2x mx-5'></i><Link to={"heapsort"}>Heap Sort</Link></div>
-          <div className='rounded shadow p-3 my-3 bg-white' style={{display: "flex", alignItems: "center", justifyContent: "center"}} ><i className='fas fa-arrow-right-to-bracket fa-2x mx-5'></i><Link to={"insertionsort"}>Insertion Sort</Link></div>
-          <div className='rounded shadow p-3 my-3 bg-white' style={{display: "flex", alignItems: "center", justifyContent: "center"}} ><i className='fas fa-jet-fighter fa-2x mx-5'></i><Link to={"quicksort"}>Quick Sort</Link></div>
-          <div className='rounded shadow p-3 my-3 bg-white' style={{display: "flex", alignItems: "center", justifyContent: "center"}} ><i className='fas fa-arrow-up-short-wide fa-2x mx-5'></i><Link to={"selectionsort"}>Selection Sort</Link></div>
+          <div className='rounded shadow p-2 my-3 bg-white' > <i className='fas fa-droplet fa-2x mx-5'></i> <div><Link to={"bubblesort"}>Bubble Sort</Link></div> </div>
+          <div className='rounded shadow p-2 my-3 bg-white' > <i className='fas fa-tree fa-2x mx-5'></i> <div><Link to={"heapsort"}>Heap Sort</Link></div> </div>
+          <div className='rounded shadow p-2 my-3 bg-white' > <i className='fas fa-arrow-right-to-bracket fa-2x mx-5'></i> <div><Link to={"insertionsort"}>Insertion Sort</Link></div> </div>
+          <div className='rounded shadow p-2 my-3 bg-white' > <i className='fas fa-jet-fighter fa-2x mx-5'></i> <div><Link to={"quicksort"}>Quick Sort</Link></div> </div>
+          <div className='rounded shadow p-2 my-3 bg-white' > <i className='fas fa-arrow-up-short-wide fa-2x mx-5'></i> <div><Link to={"selectionsort"}>Selection Sort</Link></div> </div>
         </ol>
       </div>
 
