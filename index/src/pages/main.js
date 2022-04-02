@@ -1,11 +1,9 @@
 var arr = [54, 5, 92, 49, 23, 8];
 
 /*********** VISUALIZATION HELPER FUNCTIONS ***********/
-var display = document.getElementById("arrtable");
-var comments =  document.getElementById("comments");
-var comments2 = document.getElementById("comments2");
 
 function printArrayVisual(arr) {
+    let display = document.getElementById("arrtable");
     let table = document.createElement("table");
     let tablerow = document.createElement("tr");
 
@@ -18,7 +16,7 @@ function printArrayVisual(arr) {
 }
 
 async function tablify(arr, swap1 = null, swap2 = null, upto = null) {
-    var display = document.getElementById("arrtable");
+    let display = document.getElementById("arrtable");
     removeAllChildren("arrtable");
     let table = document.createElement("table");
     let tablerow = document.createElement("tr");
@@ -46,7 +44,7 @@ async function tablify(arr, swap1 = null, swap2 = null, upto = null) {
 
 
 async function noSwapTablify(arr, check1 = null, check2 = null, upto = null) {
-    var display = document.getElementById("arrtable");
+    let display = document.getElementById("arrtable");
     removeAllChildren("arrtable");
     let table = document.createElement("table");
     let tablerow = document.createElement("tr");
@@ -67,7 +65,7 @@ async function noSwapTablify(arr, check1 = null, check2 = null, upto = null) {
 }
 
 async function tablifyQuickSort(arr, swap1 = null, swap2 = null, left = null, right = null) {
-    var display = document.getElementById("arrtable");
+    let display = document.getElementById("arrtable");
     removeAllChildren("arrtable");
     let table = document.createElement("table");
     let tablerow = document.createElement("tr");
@@ -93,7 +91,7 @@ async function visualizeHeapify(arr, sorted, swap1 = -1, swap2 = -1, isEnd = fal
 
     let sleepTime = (swap1 < 0 && swap2 < 0) ? 1000 : 2500;
 
-    var display = document.getElementById("arrtable");
+    let display = document.getElementById("arrtable");
     display.style.textAlign = "center";
 
     let tree = document.createElement("div");
@@ -251,6 +249,8 @@ async function insertionSort(arr) {
         let position = arr[i];
         let j = i-1;
 
+        let display = document.getElementById("arrtable");
+        var comments =  document.getElementById("comments");
         removeAllChildren("comments");
         let loops = 0;
         let inserting = document.createElement("span");
@@ -355,6 +355,7 @@ async function heapSort(arr) {
         await heapify(arr, n, i);
     }
 
+    let display = document.getElementById("arrtable");
     var comments =  document.getElementById("comments");
     let heapBuilt = document.createElement("div");
     heapBuilt.innerHTML = "Heap built";
