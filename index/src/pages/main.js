@@ -215,7 +215,7 @@ async function bubbleSort(arr) {
                 arr[i] = arr[i+1];
                 arr[i+1] = swap;
                 ++swaps;
-                await noSwapTablify(arr, i, i+1);
+                await tablify(arr, i, i+1);
             }
         }
         if(swaps == 0) break;
