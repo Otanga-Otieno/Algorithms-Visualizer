@@ -422,7 +422,7 @@ async function heapify(arr, n, i) {
 
 }
 
-/************************************* End of algorithms**********************/
+/************************************* Helper functions**********************/
 
 function originalArray(arr) {
 
@@ -456,8 +456,8 @@ function clearChildren(id) {
 function getArray(sortFunction) {
 
     let input = document.getElementById("userarray").value;
-    input = input.replace("[","");
-    input = input.replace("]","");
+    input = input.replace("[","").replace("{","").replace("(","").replace("<","");
+    input = input.replace("]","").replace("}","").replace(")","").replace(">","");
     let arr = input.substring(0, input.length).split(",");
     arr = arr.map(Number);
     if(arr.length < 2) return;
