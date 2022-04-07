@@ -20,7 +20,7 @@ function Heap() {
             type="text"
             style={{ width: "60%", height: "1.5rem" }}
             id="userarray"
-            placeholder="Enter original array (separate values with coma, full array with square brackets also allowed)"
+            placeholder="Enter array"
             />
             <button id="getarrbtn" onClick={() => getArray(heapSort)} >
             Run
