@@ -21,7 +21,7 @@ function Bubble() {
             id="userarray"
             placeholder="Enter array"
             />
-            <button id="getarrbtn" onClick={() => getArray(bubbleSort)} >
+            <button className="btn btn-success mx-2" id="getarrbtn" onClick={() => getArray(bubbleSort)} >
             Run
             </button>
         </div>

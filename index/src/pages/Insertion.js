@@ -21,7 +21,7 @@ function Insertion() {
             id="userarray"
             placeholder="Enter array"
             />
-            <button id="getarrbtn" onClick={() => getArray(insertionSort)} >
+            <button className="btn btn-success mx-2" id="getarrbtn" onClick={() => getArray(insertionSort)} >
             Run
             </button>
         </div>

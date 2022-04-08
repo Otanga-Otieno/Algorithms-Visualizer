@@ -22,7 +22,7 @@ function Heap() {
             id="userarray"
             placeholder="Enter array"
             />
-            <button id="getarrbtn" onClick={() => getArray(heapSort)} >
+            <button className="btn btn-success mx-2" id="getarrbtn" onClick={() => getArray(heapSort)} >
             Run
             </button>
         </div>

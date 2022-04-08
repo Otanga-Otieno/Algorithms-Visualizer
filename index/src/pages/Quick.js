@@ -21,7 +21,7 @@ function Quick() {
             id="userarray"
             placeholder="Enter array"
             />
-            <button id="getarrbtn" onClick={() => getArray(quickSort)} >
+            <button className="btn btn-success mx-2" id="getarrbtn" onClick={() => getArray(quickSort)} >
             Run
             </button>
         </div>

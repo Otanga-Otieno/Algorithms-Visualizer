@@ -21,7 +21,7 @@ function Selection() {
             id="userarray"
             placeholder="Enter array"
             />
-            <button id="getarrbtn" onClick={() => getArray(selectionSort)}>
+            <button className="btn btn-success mx-2" id="getarrbtn" onClick={() => getArray(selectionSort)}>
             Run
             </button>
         </div>
