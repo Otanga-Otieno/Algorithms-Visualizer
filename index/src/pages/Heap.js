@@ -1,14 +1,17 @@
 import React from "react";
-import {arr, originalArray, getArray, heapSort} from "./main.js";
+import {arr, originalArray, printError, getArray, heapSort} from "./main.js";
 
 
 function Heap() {
+    let running = true;
     let array = arr.slice();
 
     return (
         <div onLoad={() => {
             originalArray(array);
-            heapSort(array);
+            heapSort(array).then((result) => {
+                running = result;
+            });
         }}  style={{backgroundColor: "white", padding: "2.5%", margin: "2.5%"}}>
         <link rel="stylesheet" href="main.css" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -22,10 +25,20 @@ function Heap() {
             id="userarray"
             placeholder="Enter array"
             />
-            <button className="btn btn-success mx-2" id="getarrbtn" onClick={() => getArray(heapSort)} >
+            <button className="btn btn-success mx-2" id="getarrbtn" onClick={() => {
+                if(!running) {
+                    running = true;
+                    getArray(heapSort).then((result) => {
+                        running = result;
+                    });
+                } else {
+                    printError("Please wait for current process to complete! ");
+                } 
+            }} >
             Run
             </button>
         </div>
+        <div id="errors" style={{ height: "10%", margin: "2%", textAlign: "center", color: "red" }} />
         <div id="origarray" />
         <div style={{ margin: "5%" }}>
             <p>

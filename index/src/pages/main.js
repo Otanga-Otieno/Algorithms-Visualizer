@@ -1,4 +1,5 @@
-var arr = [54, 5, 92, 49, 23, 8];
+//var arr = [54, 5, 92, 49, 23, 8];
+var arr = [2,3,1];
 
 /*********** VISUALIZATION HELPER FUNCTIONS ***********/
 
@@ -219,7 +220,7 @@ async function bubbleSort(arr) {
         if(swaps == 0) break;
     }
     tablify(arr);
-    return arr;
+    return false;
 }
 
 async function selectionSort(arr) {
@@ -240,7 +241,7 @@ async function selectionSort(arr) {
 
     }
     tablify(arr, -1, -1, arr.length);
-    return arr;
+    return false;
 }
 
 async function insertionSort(arr) {
@@ -276,7 +277,7 @@ async function insertionSort(arr) {
     }
     removeAllChildren("comments");
     tablify(arr, -1, -1, arr.length);
-    return arr;
+    return false;
 }
 
 async function quickSort(arr, left = 0, right = arr.length-1) {
@@ -299,7 +300,7 @@ async function quickSort(arr, left = 0, right = arr.length-1) {
     removeAllChildren("comments2");
     removeAllChildren("comments");
     await tablifyQuickSort(arr);
-    return arr;
+    return false;
 
 }
 
@@ -387,7 +388,7 @@ async function heapSort(arr) {
     msg.innerHTML = "Final array: ";
     display.appendChild(msg);
     printArrayVisual(arr);
-    return arr;
+    return false;
 }
 
 async function heapify(arr, n, i) {
@@ -453,7 +454,7 @@ function clearChildren(id) {
 
 }
 
-function getArray(sortFunction) {
+async function getArray(sortFunction) {
 
     let input = document.getElementById("userarray").value;
     input = input.replace("[","").replace("{","").replace("(","").replace("<","");
@@ -463,19 +464,28 @@ function getArray(sortFunction) {
     if(arr.length < 2) return;
     clearChildren("origarray");
     originalArray(arr);
-    printArray(arr, sortFunction);
+    await printArray(arr, sortFunction);
+    return false;
 
 }
 
-function printArray(arr, sortFunction) {
+async function printArray(arr, sortFunction) {
 
     clearChildren("arrtable");
-    currentSort(arr, sortFunction);
+    await currentSort(arr, sortFunction);
 
 }
 
-function currentSort(arr, sortFunction) {
-    sortFunction(arr);
+async function currentSort(arr, sortFunction) {
+    await sortFunction(arr);
 }
 
-export {arr, originalArray, getArray, bubbleSort, selectionSort, insertionSort, quickSort, heapSort};
+function printError(errorMessage) {
+    const errorBox = document.getElementById("errors");
+    errorBox.innerHTML = errorMessage;
+    setTimeout(() => {
+        errorBox.innerHTML = "";
+    }, 5000);
+}
+
+export {arr, originalArray, getArray, printError, bubbleSort, selectionSort, insertionSort, quickSort, heapSort};

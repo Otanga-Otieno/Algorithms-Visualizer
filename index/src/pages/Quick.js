@@ -1,13 +1,16 @@
 import React from "react";
-import {arr, originalArray, getArray, quickSort} from "./main.js";
+import {arr, originalArray, printError, getArray, quickSort} from "./main.js";
 
 function Quick() {
+    let running = true;
     let array = arr.slice();
     
     return (
         <div onLoad={() => {
             originalArray(array);
-            quickSort(array);
+            quickSort(array).then((result) => {
+                running = result;
+            });
         }}  style={{backgroundColor: "white", padding: "2.5%", margin: "2.5%"}}>
         <link rel="stylesheet" href="main.css" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -21,10 +24,20 @@ function Quick() {
             id="userarray"
             placeholder="Enter array"
             />
-            <button className="btn btn-success mx-2" id="getarrbtn" onClick={() => getArray(quickSort)} >
+            <button className="btn btn-success mx-2" id="getarrbtn" onClick={() => {
+                if(!running) {
+                    running = true;
+                    getArray(quickSort).then((result) => {
+                        running = result;
+                    });
+                } else {
+                    printError("Please wait for current process to complete! ");
+                } 
+            }} >
             Run
             </button>
         </div>
+        <div id="errors" style={{ height: "10%", margin: "2%", textAlign: "center", color: "red" }} />
         <div id="origarray" />
         <div style={{ margin: "5%" }}>
             <p>
