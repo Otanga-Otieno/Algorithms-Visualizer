@@ -1,5 +1,4 @@
-//var arr = [54, 5, 92, 49, 23, 8];
-var arr = [2,3,1];
+var arr = [5,9,1,7,3];
 
 /*********** VISUALIZATION HELPER FUNCTIONS ***********/
 
