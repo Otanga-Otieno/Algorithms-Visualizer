@@ -17,3 +17,23 @@ The functions to visualize the algorithms are contained in index/src/pages/main.
 An overview of the landing page:
 
 ![Alt text](https://otanga.co.ke/project-screenshots/algoviz/algovizss1.png "Landing Page")
+
+Bubble sort running:
+
+![Alt text](https://otanga.co.ke/project-screenshots/algoviz/algovizss2.png "Bubble Sort Running")
+
+Bubble sort on completion:
+
+![Alt text](https://otanga.co.ke/project-screenshots/algoviz/algovizss3.png "Bubble Sort Done")
+
+Heap sort in action:
+
+![Alt text](https://otanga.co.ke/project-screenshots/algoviz/algovizss4.png "Heap Sort Running")
+
+Quick Sort in action:
+
+![Alt text](https://otanga.co.ke/project-screenshots/algoviz/algovizss5.png "Quick Sort Running")
+
+Selection sort in action:
+
+![Alt text](https://otanga.co.ke/project-screenshots/algoviz/algovizss6.png "Selection Sort Running")
