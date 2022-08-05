@@ -12,11 +12,8 @@ The Algorithms that have been implemented so far are:
 
 
 The functions to visualize the algorithms are contained in index/src/pages/main.js
-<pre>
+<br/><br/><br/>
 
-
-
-</pre>
 An overview of the landing page:
 
 ![Alt text](https://otanga.co.ke/project-screenshots/algoviz/algovizss1.png "Landing Page")
