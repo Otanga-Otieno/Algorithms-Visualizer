@@ -9,6 +9,11 @@ The Algorithms that have been implemented so far are:
 	3. Insertion Sort
 	4. Quick Sort
 	5. Selection Sort
-	
+
 
 The functions to visualize the algorithms are contained in index/src/pages/main.js
+
+
+An overview of the landing page:
+
+![Alt text](https://otanga.co.ke/project-screenshots/algoviz/algovizss1.png "Landing Page")
