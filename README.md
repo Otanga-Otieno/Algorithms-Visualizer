@@ -42,3 +42,4 @@ Quick Sort in action:
 Selection sort in action:
 
 ![Alt text](https://otanga.co.ke/project-screenshots/algoviz/algovizss6.png "Selection Sort Running")
+<br/><br/><br/>
