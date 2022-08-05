@@ -12,46 +12,46 @@ The Algorithms that have been implemented so far are:
 
 
 The functions to visualize the algorithms are contained in index/src/pages/main.js
+<pre>
 
 
 
-
-
+</pre>
 An overview of the landing page:
 
 ![Alt text](https://otanga.co.ke/project-screenshots/algoviz/algovizss1.png "Landing Page")
+<pre>
 
 
-
-
+</pre>
 Bubble sort running:
 
 ![Alt text](https://otanga.co.ke/project-screenshots/algoviz/algovizss2.png "Bubble Sort Running")
+<pre>
 
 
-
-
+</pre>
 Bubble sort on completion:
 
 ![Alt text](https://otanga.co.ke/project-screenshots/algoviz/algovizss3.png "Bubble Sort Done")
+<pre>
 
 
-
-
+</pre>
 Heap sort in action:
 
 ![Alt text](https://otanga.co.ke/project-screenshots/algoviz/algovizss4.png "Heap Sort Running")
+<pre>
 
 
-
-
+</pre>
 Quick Sort in action:
 
 ![Alt text](https://otanga.co.ke/project-screenshots/algoviz/algovizss5.png "Quick Sort Running")
+<pre>
 
 
-
-
+</pre>
 Selection sort in action:
 
 ![Alt text](https://otanga.co.ke/project-screenshots/algoviz/algovizss6.png "Selection Sort Running")
