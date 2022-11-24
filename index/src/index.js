@@ -29,6 +29,14 @@ ReactDOM.render(
             <Route path='quicksort' element={<Quick />} />
             <Route path='selectionsort' element={<Selection />} />
         </Routes>
+        <Routes>
+            <Route path='/algoviz' element={<App />} />
+            <Route path='/algoviz/bubblesort' element={<Bubble />} />
+            <Route path='/algoviz/heapsort' element={<Heap />} />
+            <Route path='/algoviz/insertionsort' element={<Insertion />} />
+            <Route path='/algoviz/quicksort' element={<Quick />} />
+            <Route path='/algoviz/selectionsort' element={<Selection />} />
+        </Routes>
     </BrowserRouter>,
     rootElement
 );
